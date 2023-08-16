@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UserList</string>
+    <string name="jurusan">Jurusan %1$s</string>
+    <string name="nama">Nama</string>
+    <string name="email">Email</string>
+    <string name="jurusan_label">Jurusan</string>
+    <string name="semester">Semester</string>
+    <string name="semi_colon">:</string>
+</resources>

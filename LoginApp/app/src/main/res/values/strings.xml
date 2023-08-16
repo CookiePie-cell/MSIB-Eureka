@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LoginApp</string>
+    <string name="masukkan_nama">Masukkan nama</string>
+    <string name="masukkan_email">Masukkan email</string>
+    <string name="masukkan_jurusan">Masukkan jurusan</string>
+    <string name="login">LOGIN</string>
+    <string name="masukkan_semester">Masukkan semester</string>
+    <string name="btn_login">Login</string>
+    <string name="semester">Semester %1$s</string>
+    <string name="data_user">DATA USER</string>
+</resources>
