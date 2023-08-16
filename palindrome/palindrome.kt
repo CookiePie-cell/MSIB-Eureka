@@ -1,9 +1,9 @@
-fun cekPalindrome(teks: String): Boolean {
+fun cekPalindrome(teks: String): String {
     val panjang = teks.length
     for(i in 0 until panjang / 2){
-        if (teks[i].lowercaseChar() != teks[panjang - i - 1].lowercaseChar()) return false
+        if (teks[i].lowercaseChar() != teks[panjang - i - 1].lowercaseChar()) return "Bukan palindrom"
     }
-    return true
+    return "Palindrom"
 }
 
 fun main() {
