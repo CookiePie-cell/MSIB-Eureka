@@ -7,4 +7,4 @@
 ### Tugas 16/08/2023
 - Palindrom
 - LoginApp
-- UserApp
+- UserList
