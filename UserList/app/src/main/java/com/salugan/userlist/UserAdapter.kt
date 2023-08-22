@@ -27,7 +27,7 @@ class UserAdapter(
         fun bind(user: User) {
             binding.apply {
                 tvName.text = user.nama
-                tvJurusan.text = context.resources.getString(R.string.jurusan, user.jurusan)
+                tvJurusan.text = itemView.resources.getString(R.string.jurusan, user.jurusan)
                 tvPhoto.setImageResource(user.photo)
             }
             itemView.setOnClickListener { onClick(user) }
