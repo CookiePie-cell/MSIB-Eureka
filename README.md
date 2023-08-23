@@ -1,4 +1,10 @@
 # MSIB-Eureka
+### Tugas 23/08/2023
+- GithubUser
+  https://github.com/CookiePie-cell/MSIB-Eureka/tree/main/GithubUser
+- Ringkasan.pptx
+  https://github.com/CookiePie-cell/MSIB-Eureka/blob/main/ringkasan2.pptx
+
 ### Tugas 22/08/2023
 - Kalkulator
   https://github.com/CookiePie-cell/MSIB-Eureka/tree/main/Kalkulator
