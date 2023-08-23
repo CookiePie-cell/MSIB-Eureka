@@ -1,16 +1,16 @@
 package com.salugan.kalkulator
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.salugan.kalkulator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var currentInput = ""
-    private var currentOperator = ""
+    private var currentInput = "0"
+    private var prevOperator = ""
     private var result = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+            tvResult.text = currentInput
             btn1.setOnClickListener { clear() }
             btn2.setOnClickListener { backspace() }
             btn3.setOnClickListener {
@@ -54,19 +55,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clear() {
-        currentInput = ""
-        currentOperator = ""
-        binding.tvResult.text = ""
+        currentInput = "0"
+        prevOperator = ""
+        binding.tvResult.text = "0"
         binding.tvOperator.text = ""
     }
 
     private fun addNumber(s: String) {
-        currentInput += s
+        if (currentInput == "0") {
+            currentInput = s
+        } else {
+            currentInput += s
+        }
         binding.tvResult.text = currentInput
     }
 
     private fun backspace() {
-        if (currentInput.isNotEmpty()) {
+        if (currentInput.length - 1 < 1) currentInput = "0"
+        else if (currentInput.isNotEmpty() && currentInput != "0") {
             currentInput = currentInput.dropLast(1)
         }
         binding.tvResult.text = currentInput
@@ -79,28 +85,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun addOperator(operator: String) {
         if (currentInput.isNotEmpty()) {
             val currentValue = currentInput.toDouble()
-            when (currentOperator) {
+
+            if (prevOperator == "/" && currentValue == 0.0) {
+                binding.tvResult.text = "Zero division"
+                return
+            }
+
+            when (prevOperator) {
                 "+" -> result += currentValue
                 "-" -> result -= currentValue
                 "x" -> result *= currentValue
                 "/" -> result /= currentValue
                 else -> result = currentValue
             }
+
             currentInput = if (operator == "%") result.toString() else ""
-            currentOperator = operator
+            prevOperator = operator
             binding.tvResult.text = ""
             binding.tvOperator.text = resources.getString(R.string.operation, result.toString(), operator)
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun calculateResult() {
-        if (currentInput.isNotEmpty() && currentOperator.isNotEmpty()) {
-            Log.d("Testing", "Kode ini terpanggil")
+        if (currentInput.isNotEmpty() && prevOperator.isNotEmpty()) {
             val currentValue = currentInput.toDouble()
-            when (currentOperator) {
+
+            if (prevOperator == "/" && currentValue == 0.0) {
+                binding.tvResult.text = "Zero division"
+                return
+            }
+
+            when (prevOperator) {
                 "+" -> result += currentValue
                 "-" -> result -= currentValue
                 "x" -> result *= currentValue
@@ -109,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             }
             currentInput = result.toString()
             binding.tvResult.text = result.toString()
-            currentOperator = ""
+            prevOperator = ""
             binding.tvOperator.text = binding.tvOperator.text.dropLast(1)
         }
     }

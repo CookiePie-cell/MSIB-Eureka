@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kennyc.view.MultiStateView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentFollow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:msv_errorView="@layout/layout_error"
+    app:msv_emptyView="@layout/layout_empty"
+    app:msv_loadingView="@layout/layout_loading"
+    app:msv_viewState="content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.FollowFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFollow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</com.kennyc.view.MultiStateView>

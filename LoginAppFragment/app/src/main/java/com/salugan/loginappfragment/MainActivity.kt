@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         if (fragment !is LoginFragment) {
             supportFragmentManager.commit {
-                replace(R.id.fragment_container, mLoginFragment, LoginFragment::class.java.simpleName)
+                add(R.id.fragment_container, mLoginFragment, LoginFragment::class.java.simpleName)
             }
         }
     }

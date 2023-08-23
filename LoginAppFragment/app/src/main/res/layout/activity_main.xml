@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
+    <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.salugan.loginappfragment.LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
