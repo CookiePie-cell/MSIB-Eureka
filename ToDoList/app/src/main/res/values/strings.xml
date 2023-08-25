@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+    <string name="add">ADD</string>
+    <string name="url_cover">Url cover</string>
+    <string name="judul">Judul</string>
+    <string name="nama_penulis">Nama penulis</string>
+    <string name="tahun_terbit">Tahun terbit</string>
+    <string name="kategori">Kategori</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_book">Add book</string>
+</resources>

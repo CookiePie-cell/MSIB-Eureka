@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253872409945",
+    "project_id": "eureka-todolist",
+    "storage_bucket": "eureka-todolist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253872409945:android:b3a72cd6c8b82af6a65048",
+        "android_client_info": {
+          "package_name": "com.salugan.todolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253872409945-fhhamf1pci0ofarsqi0520e68kkmudlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQIP4iRLTdmHM3DCPnO3RZxM8cLRdJXjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253872409945-fhhamf1pci0ofarsqi0520e68kkmudlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
