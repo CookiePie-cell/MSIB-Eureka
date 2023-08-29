@@ -6,8 +6,12 @@ import com.salugan.todolist.model.Book
 
 class BookRepository(private val firebaseDataSource: FirebaseDataSource) {
 
-    fun getListBuku(): LiveData<Result<List<Book>>> {
+    fun getListBook(): LiveData<Result<List<Book>>> {
         return firebaseDataSource.getListBook()
+    }
+
+    fun getSpecificBook(bookId: String): LiveData<Result<Book>> {
+        return firebaseDataSource.getSpecificBook(bookId)
     }
 
     fun addBook(book: Book) {
@@ -15,10 +19,10 @@ class BookRepository(private val firebaseDataSource: FirebaseDataSource) {
     }
 
     fun editBook(book: Book) {
-
+        firebaseDataSource.editBook(book)
     }
 
     fun deleteBook(book: Book) {
-
+        firebaseDataSource.deleteBook(book)
     }
 }

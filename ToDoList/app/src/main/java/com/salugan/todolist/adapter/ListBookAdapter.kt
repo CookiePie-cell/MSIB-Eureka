@@ -7,7 +7,10 @@ import com.bumptech.glide.Glide
 import com.salugan.todolist.databinding.TodoItemBinding
 import com.salugan.todolist.model.Book
 
-class ListBookAdapter(private val listBook: ArrayList<Book>)
+class ListBookAdapter(
+    private val listBook: ArrayList<Book>,
+    private val onClick: (book: Book) -> Unit,
+    )
     : RecyclerView.Adapter<ListBookAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +35,8 @@ class ListBookAdapter(private val listBook: ArrayList<Book>)
                 tvJudulBuku.text = book.judul
                 tvNamaPenulis.text = book.namaPenulis
             }
+
+            itemView.setOnClickListener { onClick(book) }
         }
     }
 }

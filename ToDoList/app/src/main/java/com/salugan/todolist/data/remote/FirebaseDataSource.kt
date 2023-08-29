@@ -44,6 +44,28 @@ class FirebaseDataSource {
         return liveData
     }
 
+    fun getSpecificBook(bookId: String): LiveData<Result<Book>> {
+        val liveData = MutableLiveData<Result<Book>>()
+
+        liveData.value = Result.Loading
+        val bookListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val book = dataSnapshot.getValue(Book::class.java)
+                book?.let {
+                    liveData.value = Result.Success(it)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                liveData.value = Result.Error(databaseError.message)
+                Log.w("wokwodka", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+
+        ref.child(bookId).addValueEventListener(bookListener)
+        return liveData
+    }
+
     fun addBook(book: Book) {
         val bookId = ref.push().key
         bookId?.let {
@@ -53,11 +75,15 @@ class FirebaseDataSource {
     }
 
     fun editBook(book: Book) {
-
+        book.id?.let {
+            ref.child(it).setValue(book)
+        }
     }
 
     fun deleteBook(book: Book) {
-
+        book.id?.let {
+            ref.child(it).removeValue()
+        }
     }
 
 }

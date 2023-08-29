@@ -8,6 +8,6 @@ import com.salugan.todolist.model.Book
 
 class MainViewModel(bookRepository: BookRepository) : ViewModel() {
 
-    val listBook: LiveData<Result<List<Book>>> = bookRepository.getListBuku()
+    val listBook: LiveData<Result<List<Book>>> = bookRepository.getListBook()
 
 }

@@ -1,6 +1,6 @@
 package com.salugan.todolist.ui.activity.main
 
-import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,8 +10,9 @@ import com.salugan.todolist.adapter.ListBookAdapter
 import com.salugan.todolist.data.Result
 import com.salugan.todolist.databinding.ActivityMainBinding
 import com.salugan.todolist.model.Book
-import com.salugan.todolist.ui.Fragment.AddBookDialogFragment
+import com.salugan.todolist.ui.Fragment.BookDialogFragment
 import com.salugan.todolist.ui.ViewModelFactory
+import com.salugan.todolist.ui.activity.detail.DetailBookActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +40,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            val newFragment = AddBookDialogFragment()
+            val newFragment = BookDialogFragment()
+            val bundle = Bundle()
+            bundle.putBoolean(BookDialogFragment.EXTRA_OP, false)
+            newFragment.arguments = bundle
             newFragment.show(supportFragmentManager, "add")
         }
 
@@ -49,7 +53,11 @@ class MainActivity : AppCompatActivity() {
         val listBook = arrayListOf<Book>()
         listBook.addAll(books)
 
-        val adapter = ListBookAdapter(listBook)
+        val adapter = ListBookAdapter(listBook) {
+            val intent = Intent(this, DetailBookActivity::class.java)
+            intent.putExtra(DetailBookActivity.EXTRA_BOOK, it.id)
+            startActivity(intent)
+        }
         binding.rvTodoList.adapter = adapter
     }
 }
