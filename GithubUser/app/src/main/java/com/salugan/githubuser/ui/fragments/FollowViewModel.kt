@@ -5,13 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.salugan.githubuser.data.Result
 import com.salugan.githubuser.data.UserRepository
 import com.salugan.githubuser.data.remote.model.responses.UserResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FollowViewModel(private val userRepository: UserRepository) : ViewModel() {
+@HiltViewModel
+class FollowViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     private val _followers = MutableStateFlow<Result<List<UserResponse>>>(Result.Loading)
     val followers: StateFlow<Result<List<UserResponse>>> = _followers.asStateFlow()

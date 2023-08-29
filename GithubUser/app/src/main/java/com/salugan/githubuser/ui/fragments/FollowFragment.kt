@@ -15,14 +15,15 @@ import com.kennyc.view.MultiStateView
 import com.salugan.githubuser.adapters.ListUserAdapter
 import com.salugan.githubuser.data.remote.model.responses.UserResponse
 import com.salugan.githubuser.databinding.FragmentFollowBinding
-import com.salugan.githubuser.ui.ViewModelFactory
 import com.salugan.githubuser.data.Result
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 enum class FollowType {
     FOLLOWERS, FOLLOWING
 }
 
+@AndroidEntryPoint
 class FollowFragment : Fragment(), MultiStateView.StateListener {
 
     private var _binding: FragmentFollowBinding? = null
@@ -31,9 +32,7 @@ class FollowFragment : Fragment(), MultiStateView.StateListener {
     private var _multiStateView: MultiStateView? = null
     private val multiStateView get() = _multiStateView!!
 
-    private val followViewModel by viewModels<FollowViewModel> {
-        ViewModelFactory.getInstance()
-    }
+    private val followViewModel: FollowViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

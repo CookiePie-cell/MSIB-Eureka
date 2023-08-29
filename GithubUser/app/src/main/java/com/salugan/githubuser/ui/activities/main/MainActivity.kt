@@ -17,8 +17,10 @@ import com.salugan.githubuser.adapters.ListUserAdapter
 import com.salugan.githubuser.data.remote.model.responses.UserResponse
 import com.salugan.githubuser.databinding.ActivityMainBinding
 import com.salugan.githubuser.data.Result
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MultiStateView.StateListener {
 
     private lateinit var activityMainBinding: ActivityMainBinding
@@ -27,9 +29,7 @@ class MainActivity : AppCompatActivity(), MultiStateView.StateListener {
 
     private  var container: ShimmerFrameLayout? = null
 
-    private val mainViewModel by viewModels<MainViewModel> {
-        MainViewModelFactory.getInstance()
-    }
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

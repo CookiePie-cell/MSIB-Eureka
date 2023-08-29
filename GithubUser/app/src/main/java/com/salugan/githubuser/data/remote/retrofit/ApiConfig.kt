@@ -12,7 +12,7 @@ class ApiConfig {
     companion object {
         private const val BASE_URL = "https://api.github.com/"
 
-        private const val TOKEN = "YOUR_TOKEN"
+        private const val TOKEN = "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"
 
         private fun provideOkHttpClient(): OkHttpClient {
 

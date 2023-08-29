@@ -3,7 +3,6 @@ package com.salugan.githubuser.ui.activities.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.lifecycle.Lifecycle
@@ -20,19 +19,17 @@ import com.salugan.githubuser.adapters.SectionsPagerAdapter
 import com.salugan.githubuser.data.remote.model.responses.DetailUserResponse
 import com.salugan.githubuser.databinding.ActivityDetailUserBinding
 import com.salugan.githubuser.data.Result
-import com.salugan.githubuser.ui.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailUserActivity : AppCompatActivity(), MultiStateView.StateListener {
 
     private lateinit var activityDetailUserBinding: ActivityDetailUserBinding
 
     private lateinit var multiStateView: MultiStateView
 
-
-    private val detailViewModel by viewModels<DetailViewModel> {
-        ViewModelFactory.getInstance()
-    }
+    private val detailViewModel: DetailViewModel by viewModels()
 
     companion object {
         @StringRes

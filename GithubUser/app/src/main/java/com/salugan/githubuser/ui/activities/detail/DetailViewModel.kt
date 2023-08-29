@@ -1,17 +1,21 @@
 package com.salugan.githubuser.ui.activities.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.salugan.githubuser.data.Result
 import com.salugan.githubuser.data.UserRepository
 import com.salugan.githubuser.data.remote.model.responses.DetailUserResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailViewModel(private val userRepository: UserRepository) : ViewModel() {
+@HiltViewModel
+class DetailViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
     private val _detailUserResult = MutableStateFlow<Result<DetailUserResponse>>(Result.Loading)
     val detailUserResult: StateFlow<Result<DetailUserResponse>> = _detailUserResult.asStateFlow()
 

@@ -1,5 +1,6 @@
 package com.salugan.githubuser.data
 
+import android.util.Log
 import com.salugan.githubuser.data.remote.model.responses.UserResponse
 import com.salugan.githubuser.data.remote.model.responses.DetailUserResponse
 import com.salugan.githubuser.data.remote.retrofit.ApiService
