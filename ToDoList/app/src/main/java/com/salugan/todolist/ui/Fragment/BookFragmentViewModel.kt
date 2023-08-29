@@ -3,8 +3,11 @@ package com.salugan.todolist.ui.Fragment
 import androidx.lifecycle.ViewModel
 import com.salugan.todolist.data.BookRepository
 import com.salugan.todolist.model.Book
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BookFragmentViewModel(private val bookRepository: BookRepository) : ViewModel() {
+@HiltViewModel
+class BookFragmentViewModel @Inject constructor(private val bookRepository: BookRepository) : ViewModel() {
 
     fun addBook(book: Book) {
         bookRepository.addBook(book)

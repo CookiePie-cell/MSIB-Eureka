@@ -103,6 +103,5 @@ class MainActivity : AppCompatActivity(), MultiStateView.StateListener {
 
 
     override fun onStateChanged(viewState: MultiStateView.ViewState) {
-        Log.v("MSVSample", "onStateChanged; viewState: $viewState")
     }
 }

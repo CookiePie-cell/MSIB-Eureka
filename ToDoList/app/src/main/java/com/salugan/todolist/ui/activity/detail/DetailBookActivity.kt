@@ -9,15 +9,14 @@ import com.salugan.todolist.data.Result
 import com.salugan.todolist.databinding.ActivityDetailBookBinding
 import com.salugan.todolist.model.Book
 import com.salugan.todolist.ui.Fragment.BookDialogFragment
-import com.salugan.todolist.ui.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailBookActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBookBinding
 
-    private val detailBookViewModel: DetailBookViewModel by viewModels {
-        ViewModelFactory.getInstance()
-    }
+    private val detailBookViewModel: DetailBookViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

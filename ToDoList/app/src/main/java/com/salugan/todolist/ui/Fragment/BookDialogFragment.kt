@@ -10,15 +10,14 @@ import androidx.fragment.app.viewModels
 import com.salugan.todolist.R
 import com.salugan.todolist.databinding.AddDialogBinding
 import com.salugan.todolist.model.Book
-import com.salugan.todolist.ui.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookDialogFragment : DialogFragment() {
 
     private lateinit var binding: AddDialogBinding
 
-    private val bookFragmentViewModel: BookFragmentViewModel by viewModels {
-        ViewModelFactory.getInstance()
-    }
+    private val bookFragmentViewModel: BookFragmentViewModel by viewModels()
 
     private var isEdit: Boolean = false
     private var book: Book? = null
