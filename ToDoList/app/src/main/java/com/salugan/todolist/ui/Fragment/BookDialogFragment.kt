@@ -22,6 +22,8 @@ class BookDialogFragment : DialogFragment() {
     private var isEdit: Boolean = false
     private var book: Book? = null
 
+    private val SUPPORTED_IMAGE = mutableListOf(".jpeg", ".jpg", ".png")
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AddDialogBinding.inflate(layoutInflater)
 
@@ -38,17 +40,52 @@ class BookDialogFragment : DialogFragment() {
 
         val builder = AlertDialog.Builder(requireActivity())
             .setView(binding.root)
-            .setPositiveButton(R.string.ok) { dialog, id ->
-                binding.apply {
-                    Log.d("zxczxc", book.toString())
+            .setPositiveButton(R.string.ok, null) // Set initially as null
+            .setNegativeButton(R.string.cancel) { dialog, id ->
+                dialog.cancel()
+            }
 
+        val alertDialog = builder.create()
+
+        var isImageValid = false
+
+        alertDialog.setOnShowListener { dialog ->
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+
+            positiveButton.setOnClickListener {
+                binding.apply {
                     val cover = edtCover.text.toString()
                     val judul = edtJudul.text.toString()
                     val namaPenulis = edtNamaPenulis.text.toString()
                     val tahun = if (edtTahun.text.toString().isNotEmpty()) edtTahun.text.toString().toInt() else 0
                     val kategori = edtKategori.text.toString()
 
-                    if (cover.isNotEmpty() && judul.isNotEmpty() && namaPenulis.isNotEmpty() && tahun != 0 && kategori.isNotEmpty()) {
+                    if (cover.isEmpty()) edtCover.error = "Tidak boleh kosong"
+                    if (judul.isEmpty()) edtJudul.error = "Tidak boleh kosong"
+                    if (namaPenulis.isEmpty()) edtNamaPenulis.error = "Tidak boleh kosong"
+                    if (tahun == 0) edtTahun.error = "Tidak boleh kosong"
+                    if (kategori.isEmpty()) edtKategori.error = "Tidak boleh kosong"
+
+                    if (cover.isNotEmpty()) {
+                        for(i in 0 until SUPPORTED_IMAGE.size) {
+                            isImageValid = cover.contains(SUPPORTED_IMAGE[i])
+                            if (isImageValid) break
+                        }
+                        if (!isImageValid)  edtCover.error = "URL tidak valid"
+                    }
+
+                    if(tahun != 0) {
+                        if (tahun < 1800 || tahun > 2023) edtTahun.error = "Tahun tidak valid"
+                    }
+
+                    val isValid = cover.isNotEmpty()
+                            && judul.isNotEmpty()
+                            && namaPenulis.isNotEmpty()
+                            && tahun != 0 && (tahun in 1801..2023)
+                            && kategori.isNotEmpty()
+                            && isImageValid
+
+                    if (isValid) {
                         val bookId = book?.id
                         val addedBook = Book(bookId, cover, judul, namaPenulis, tahun, kategori)
 
@@ -57,14 +94,14 @@ class BookDialogFragment : DialogFragment() {
                         } else {
                             bookFragmentViewModel.editBook(addedBook)
                         }
+
+                        dialog.dismiss()
                     }
                 }
             }
-            .setNegativeButton(R.string.cancel) { dialog, id ->
-                dialog.cancel()
-            }
+        }
 
-        return builder.create()
+        return alertDialog
     }
 
     private fun checkInput() {

@@ -3,20 +3,22 @@ package com.salugan.todolist.data.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.salugan.todolist.BuildConfig
 import com.salugan.todolist.data.Result
 import com.salugan.todolist.model.Book
 
 class FirebaseDataSource {
 
-    private val database = Firebase.database("https://eureka-todolist-default-rtdb.asia-southeast1.firebasedatabase.app")
-    private val ref = database.reference.child("buku")
+    private val database = Firebase.database(BuildConfig.DATABASE_URL)
+    private val ref = database.reference.child(BuildConfig.PATH_FIELD)
 
-    fun getListBook(): LiveData<Result<List<Book>>> {
+    fun getListBook(): LiveData<Result<List<Book>>> = liveData {
         val liveData = MutableLiveData<Result<List<Book>>>()
 
         liveData.value = Result.Loading
@@ -41,10 +43,11 @@ class FirebaseDataSource {
         }
 
         ref.addValueEventListener(bookListener)
-        return liveData
+        emitSource(liveData)
+//        return liveData
     }
 
-    fun getSpecificBook(bookId: String): LiveData<Result<Book>> {
+    fun getSpecificBook(bookId: String): LiveData<Result<Book>> = liveData {
         val liveData = MutableLiveData<Result<Book>>()
 
         liveData.value = Result.Loading
@@ -63,7 +66,7 @@ class FirebaseDataSource {
         }
 
         ref.child(bookId).addValueEventListener(bookListener)
-        return liveData
+        emitSource(liveData)
     }
 
     fun addBook(book: Book) {

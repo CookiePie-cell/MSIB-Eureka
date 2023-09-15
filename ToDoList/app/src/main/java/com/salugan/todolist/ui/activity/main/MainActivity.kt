@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.kennyc.view.MultiStateView
 import com.salugan.todolist.adapter.ListBookAdapter
+import com.salugan.todolist.data.BookRepository
 import com.salugan.todolist.data.Result
 import com.salugan.todolist.databinding.ActivityMainBinding
 import com.salugan.todolist.model.Book

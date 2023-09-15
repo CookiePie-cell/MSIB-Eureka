@@ -24,6 +24,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String","DATABASE_URL", "\"https://eureka-todolist-default-rtdb.asia-southeast1.firebasedatabase.app\""
+            buildConfigField "String", "PATH_FIELD", "\"buku\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -35,6 +39,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    buildFeatures {
+        buildConfig = true
     }
     viewBinding {
         enabled = true
