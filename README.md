@@ -1,4 +1,8 @@
 # MSIB-Eureka
+### Tugas 25/08/2023
+- TodoApp
+  https://github.com/CookiePie-cell/MSIB-Eureka/tree/main/ToDoList
+
 ### Tugas 23/08/2023
 - GithubUser
   https://github.com/CookiePie-cell/MSIB-Eureka/tree/main/GithubUser
