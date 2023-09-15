@@ -23,6 +23,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://api.github.com\""
+            buildConfigField "String", "TOKEN", "\"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\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -38,6 +42,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig = true
     }
     kapt {
         correctErrorTypes true

@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.kennyc.view.MultiStateView
 import com.salugan.githubuser.R
 import com.salugan.githubuser.adapters.ListUserAdapter
@@ -47,6 +48,11 @@ class MainActivity : AppCompatActivity(), MultiStateView.StateListener {
 
         val layoutManager = LinearLayoutManager(this)
         activityMainBinding.rvUsers.layoutManager = layoutManager
+
+        activityMainBinding.button2.setOnClickListener {
+            FirebaseCrashlytics.getInstance().log("tes")
+            throw RuntimeException("Testing part2")
+        }
 
         mainViewModel.getListUsers()
         lifecycleScope.launch {

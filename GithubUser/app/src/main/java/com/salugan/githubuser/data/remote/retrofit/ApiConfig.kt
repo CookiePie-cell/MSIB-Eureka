@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit
 
 class ApiConfig {
     companion object {
-        private const val BASE_URL = "https://api.github.com/"
+        private const val BASE_URL = BuildConfig.BASE_URL
 
-        private const val TOKEN = "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"
+        private const val TOKEN = BuildConfig.TOKEN
 
         private fun provideOkHttpClient(): OkHttpClient {
 
